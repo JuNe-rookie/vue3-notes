@@ -15,14 +15,16 @@ export default {
     let name = ref("Tom");
     let age = ref(23);
     let job = ref({
-      type: "测试工程师",
+      type: "门卫",
       salary: "0k",
     });
 
   function changeInfo() {
     name.value = "李四";
     age.value = 48;
-  }
+    job.value.type = "保安";
+    job.value.salary = "1k";
+  };
 
     return {
       name,
