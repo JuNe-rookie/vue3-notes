@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  let person = {
+    name: "张三",
+    age: "30"
+  }
+
+  // 模拟Vue2实现响应式
+  // let p = {}
+  // Object.defineProperty(p, "name",{
+  //   get(){
+  //     return person.name
+  //   },
+  //   set(Newvalue) {
+  //     console.log("模拟响应式修改name属性")
+  //     return person.name = Newvalue
+  //   }
+  // })
+
+  // Vue3实现响应式
+  const p = new Proxy(person, {
+    // 查
+    get(target, propName){
+      console.log(`读取了${propName}属性`)
+      return Reflect.get(target, propName)
+    },
+    // 改和增
+    set(target, propName, value){
+      console.log(`修改了${propName}为${value}`);
+      Reflect.set(target, propName, value)
+    },
+    // 删
+    deleteProperty(target, propName){
+      console.log(`删除了${propName}属性`)
+      return Reflect.defineProperty(target, propName)
+    }
+  })
+
+
+
+</script>
+</html>
