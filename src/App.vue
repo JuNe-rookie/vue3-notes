@@ -1,48 +1,22 @@
 <template>
-  <h1>App组件</h1>
-  <p>姓名：{{name}}</p>
-  <p>年龄：{{age}}</p>
-  <p>工作种类：{{job.type}}</p>
-  <p>工作薪水：{{job.salary}}</p>
-  <p>爱好：{{hobby}}</p>
-  <p>展示c的数据：{{job.a.b.c}}</p>
-  <button @click="changeInfo">修改信息</button>
+  <PersonInfo @hello="showHelloMsg" age=20 />
 </template>
 
 <script>
-import {ref, reactive} from 'vue';
+import PersonInfo from "./components/PersonInfo.vue"
 export default {
-  name: 'App',
-  setup() {
-    let name = ref("Tom");
-    let age = ref(23);
-    let job = reactive({
-      type: "门卫",
-      salary: "0k",
-      a:{
-        b:{
-          c: 300
-        }
-      }
-    });
-    let hobby = ["1", "2", "3"];
+  components: {
+    PersonInfo
+  },
+  setup(){
+    function showHelloMsg(value) {
+      alert(`Hello,接受到的数据为:${value}`)
+    }
 
-  function changeInfo() {
-    name.value = "李四";
-    age.value = 48;
-    job.type = "保安";
-    job.salary = "1k";
-    job.a.b.c = 10101010;
-    hobby[0] = 100;
-  }
 
-    return {
-      name,
-      age,
-      job,
-      changeInfo,
-      hobby
-    };
+    return{
+      showHelloMsg
+    }
   }
 }
 </script>
